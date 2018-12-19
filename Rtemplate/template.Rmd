@@ -17,9 +17,8 @@ output:
       collapsed: no
       smooth_scroll: no
     fig_caption: yes
-  rticles::springer_article:
 title: "Your project title here"
-thanks: "Thanks to Steven V Miller for his inspirational template (https://github.com/svmiller/svm-r-markdown-templates)"
+thanks: "Latex template taken from (https://github.com/svmiller/svm-r-markdown-templates)"
 author:
 - name: Your name
   affiliation: Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin
@@ -41,24 +40,24 @@ biblio-style: apsr
 ---
 
 ```{r knitr options, echo = FALSE}
+# set output directory and file type produced when "knitting""
 knitr::opts_chunk$set(
-  fig.path = "figs/",
+  fig.path = here::here("figs"),
   screenshot.force = FALSE,
   dpi = 1200,
   dev = c("png", "jpeg", "cairo_ps")
 )
-# suppress scientific notation
-options(scipen = 999)
 ```
 ```{r info, echo = FALSE}
-project_name <- "template" # adapt!
-package_date <- "2018-12-01" # date of the CRAN snapshot that
-# the checkpoint package uses
-R_version <- "3.5.1" # R-Version to use
+project_name <- "template" 
+package_date <- "2018-12-01" # date of the CRAN snapshot
+R_version <- "3.5.1" # R-Version used
 options(Ncpus = 4) # use 4 cores for parallelized installation of packages
 if (R_version != paste0(version$major, ".", version$minor)){
   stop("ERROR: specified R version does not match currently used.")
 }
+# print sessonInfo() as markdown file
+writeLines(capture.output(sessionInfo(package=NULL)), "sessionInfo.md")
 ```
 ```{r setup, echo=FALSE, include=FALSE}
 # The following codes checks if required packages are installed, if not, installs them, and then loads them.
@@ -100,20 +99,17 @@ if (!require(tableone)) {
   install.packages("tableone", repos = cranmirror); library(tableone)
   }
 ```
-
-```{r sessionInfo, echo = FALSE}
-sessionInfo(package = NULL)
+```{r external functions, echo=FALSE}
+source(here::here("funcs", "print_p_value.R"))
 ```
 
-This report was generated on `r Sys.time()`. R version: `r paste0(version$major, ".", version$minor)` on `r version$platform`. For this report, CRAN packages as of `r package_date` were used.
-
+> This report was generated on `r Sys.time()`. R version: `r paste0(version$major, ".", version$minor)` on `r version$platform`. For this report, CRAN packages as of `r package_date` were used. See "sessionInfo.md" file for detailed package information.
 
 ```{r data input, echo = FALSE, message = FALSE, warning = FALSE }
 data <- readr::read_csv(here::here("data", "faked_vims_data.csv"))
 ```
 
 # Introduction
-
 Here you should write a brief review of the literature with citations. You should cover enough to introduce the topic and make it clear why you are asking the questions that you are.
 
 ## Research Questions
@@ -128,9 +124,9 @@ Here you should write a brief review of the literature with citations. You shoul
 Here you should outline the methods and give an overview of demographic information.
 
 ## Patients and Controls
->Patient and healthy control (HC) data were taken from an observational study, approved by the institutional review board (**INSERT ETHIC VOTE HERE**). HC matching patients for sex and age (+/-6 months) were identified using in-house python scripts using Python 3. Demograpic and clinical descriptive data are shown in Table 1.
+Patient and healthy control (HC) data were taken from an observational study, approved by the institutional review board (**INSERT ETHIC VOTE HERE**). HC matching patients for sex and age (+/-6 months) were identified using in-house python scripts using Python 3. Demograpic and clinical descriptive data are shown in Table 1.
 
-```{r demographics, echo=FALSE}
+```{r demographics, echo=FALSE, include=FALSE}
 age_diff <- with(data, t.test(age ~ diagnosis))
 sex_diff <- chisq.test(table(data$sex, data$diagnosis))
 
@@ -139,6 +135,35 @@ vars = c(
   "sex"
   )
 
-knitr::kable(print(tableone::CreateTableOne(vars = vars, data = data, factorVars = "sex", strata = "diagnosis"), nonnormal = TRUE))
+demographics_table <- knitr::kable(print(tableone::CreateTableOne(vars = vars, data = data, factorVars = "sex", strata = "diagnosis"), nonnormal = TRUE))
 ```
 
+All patients and HC provided informed consent.
+
+> *Table 1. Demographic information* `r demographics_table`.
+
+## MRI Acquisition
+MRI acquisition was performed on a 3 Tesla MRI (Tim Trio, Siemens Medical Systems, Erlangen, Germany). 
+
+## MRI Analysis
+Outline MRI analyses including software used.
+
+## Statistical Analysis
+### Confirmatory Analyses
+Outline confirmatory statistical analysis (reference pre-registration). Highlight essential software packages.
+
+### Exploratory Analyses
+Outline any additional analysis that was not pre-registered. Highlight essential software packages.
+
+## Results
+### Demographics
+No significant differences were found between MS and HC in sex ($\chi^2$ = `r sprintf("%.2f", sex_diff$statistic)` [`r sprintf("%.2f", sex_diff$parameter)`] *p* `r print_p_value(sprintf("%.3f", sex_diff$p.value), location= "text")`) or age
+(*t* = `r sprintf("%.2f", age_diff$statistic)`, [`r sprintf("%.2f", age_diff$parameter)`] *p* `r print_p_value(sprintf("%.3f", age_diff$p.value), location = "text")`, 95% confidence interval `r sprintf("%.2f", age_diff$conf.int)`).
+
+## Discussion
+
+
+## Acknowledgements
+We would like to thank all patients and healthy subjects who took part in the study. Further, we thank the study nurses, MRI technicians (S. Pikol and C. Kraut), and residents who aided in collecting the data. This work was supported by (**INCLUDE FUNDING BODY AND NUMBER**).
+
+## References

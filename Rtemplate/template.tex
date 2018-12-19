@@ -41,7 +41,7 @@
 \usepackage{longtable,booktabs}
 
 
-\title{Your project title here \thanks{Thanks to Steven V Miller for his inspirational template
+\title{Your project title here \thanks{Latex template taken from
 (\url{https://github.com/svmiller/svm-r-markdown-templates})}  }
 
 
@@ -159,9 +159,11 @@
 \vskip 6.5pt
 
 
-\noindent \doublespacing This report was generated on 2018-12-18 18:04:41. R version: 3.5.1 on
-x86\_64-pc-linux-gnu. For this report, CRAN packages as of 2018-09-01
-were used.
+\noindent \doublespacing \begin{quote}
+This report was generated on 2018-12-20 00:11:47. R version: 3.5.1 on
+x86\_64-pc-linux-gnu. For this report, CRAN packages as of 2018-12-01
+were used. See ``sessionInfo.md'' file for detailed package information.
+\end{quote}
 
 \section{Introduction}\label{introduction}
 
@@ -198,13 +200,72 @@ information.
 
 \subsection{Patients and Controls}\label{patients-and-controls}
 
-\begin{quote}
 Patient and healthy control (HC) data were taken from an observational
-study, approved by the institutional review board (). HC matching
-patients for sex and age (+/-6 months) were identified using in-house
-python scripts using Python 3. Demograpic and clinical descriptive data
-are shown in Table 1.
+study, approved by the institutional review board (\textbf{INSERT ETHIC
+VOTE HERE}). HC matching patients for sex and age (+/-6 months) were
+identified using in-house python scripts using Python 3. Demograpic and
+clinical descriptive data are shown in Table 1.
+
+All patients and HC provided informed consent.
+
+\begin{quote}
+\emph{Table 1. Demographic information}
+
+\begin{tabular}{l|l|l|l|l}
+\hline
+& HC & MS & p & test\\
+\hline
+n & 87 & 110 &  & \\
+\hline
+age (median [IQR]) & 14169.00 [9275.50, 19017.50] & 14293.50 [11218.75, 18451.25] & 0.916 & nonnorm\\
+\hline
+sex = M (\%) & 51 (58.6) & 53 (48.2) & 0.189 & \\
+\hline
+\end{tabular}
 \end{quote}
+
+.
+
+\subsection{MRI Acquisition}\label{mri-acquisition}
+
+MRI acquisition was performed on a 3 Tesla MRI (Tim Trio, Siemens
+Medical Systems, Erlangen, Germany).
+
+\subsection{MRI Analysis}\label{mri-analysis}
+
+Outline MRI analyses including software used.
+
+\subsection{Statistical Analysis}\label{statistical-analysis}
+
+\subsubsection{Confirmatory Analyses}\label{confirmatory-analyses}
+
+Outline confirmatory statistical analysis (reference pre-registration).
+Highlight essential software packages.
+
+\subsubsection{Exploratory Analyses}\label{exploratory-analyses}
+
+Outline any additional analysis that was not pre-registered. Highlight
+essential software packages.
+
+\subsection{Results}\label{results}
+
+\subsubsection{Demographics}\label{demographics}
+
+No significant differences were found between MS and HC in sex
+(\(\chi^2\) = (\(\chi^2\) = 1.73 {[}1.00{]} \emph{p} = 0.189) or age
+(\emph{t} = -0.05, {[}168.06{]} \emph{p} = 0.963, 95\% confidence
+interval -1431.05, 1364.63).
+
+\subsection{Discussion}\label{discussion}
+
+\subsection{Acknowledgements}\label{acknowledgements}
+
+We would like to thank all patients and healthy subjects who took part
+in the study. Further, we thank the study nurses, MRI technicians (S.
+Pikol and C. Kraut), and residents who aided in collecting the data.
+This work was supported by (\textbf{INCLUDE FUNDING BODY AND NUMBER}).
+
+\subsection{References}\label{references}
 
 
 
