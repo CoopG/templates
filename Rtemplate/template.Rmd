@@ -95,6 +95,9 @@ if (!require(ggsignif)) {
   }
 if (!require(stargazer)) {
   install.packages("stargazer", repos = cranmirror); library(stargazer)
+}
+if (!require(tableone)) {
+  install.packages("tableone", repos = cranmirror); library(tableone)
   }
 ```
 
@@ -125,7 +128,7 @@ Here you should write a brief review of the literature with citations. You shoul
 Here you should outline the methods and give an overview of demographic information.
 
 ## Patients and Controls
->Patient and healthy control (HC) data were taken from an observational study, approved by the institutional review board (). HC matching patients for sex and age (+/-6 months) were identified using in-house python scripts using Python 3. Demograpic and clinical descriptive data are shown in Table 1.
+>Patient and healthy control (HC) data were taken from an observational study, approved by the institutional review board (**INSERT ETHIC VOTE HERE**). HC matching patients for sex and age (+/-6 months) were identified using in-house python scripts using Python 3. Demograpic and clinical descriptive data are shown in Table 1.
 
 ```{r demographics, echo=FALSE}
 age_diff <- with(data, t.test(age ~ diagnosis))
