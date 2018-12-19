@@ -1,0 +1,216 @@
+\documentclass[11pt,]{article}
+\usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
+\newcommand*{\authorfont}{\fontfamily{phv}\selectfont}
+\usepackage[]{mathpazo}
+
+
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+
+
+
+\usepackage{abstract}
+\renewcommand{\abstractname}{}    % clear the title
+\renewcommand{\absnamepos}{empty} % originally center
+
+\renewenvironment{abstract}
+ {{%
+    \setlength{\leftmargin}{0mm}
+    \setlength{\rightmargin}{\leftmargin}%
+  }%
+  \relax}
+ {\endlist}
+
+\makeatletter
+\def\@maketitle{%
+  \newpage
+%  \null
+%  \vskip 2em%
+%  \begin{center}%
+  \let \footnote \thanks
+    {\fontsize{18}{20}\selectfont\raggedright  \setlength{\parindent}{0pt} \@title \par}%
+}
+%\fi
+\makeatother
+
+
+
+
+\setcounter{secnumdepth}{0}
+
+\usepackage{longtable,booktabs}
+
+
+\title{Your project title here \thanks{Thanks to Steven V Miller for his inspirational template
+(\url{https://github.com/svmiller/svm-r-markdown-templates})}  }
+
+
+
+\author{\Large Your name\vspace{0.05in} \newline\normalsize\emph{Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin}   \and \Large Someone else's name\vspace{0.05in} \newline\normalsize\emph{Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin}   \and \Large Another person's name\vspace{0.05in} \newline\normalsize\emph{Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin}  }
+
+
+\date{}
+
+\usepackage{titlesec}
+
+\titleformat*{\section}{\normalsize\bfseries}
+\titleformat*{\subsection}{\normalsize\itshape}
+\titleformat*{\subsubsection}{\normalsize\itshape}
+\titleformat*{\paragraph}{\normalsize\itshape}
+\titleformat*{\subparagraph}{\normalsize\itshape}
+
+
+\usepackage{natbib}
+\bibliographystyle{apsr}
+\usepackage[strings]{underscore} % protect underscores in most circumstances
+
+
+
+\newtheorem{hypothesis}{Hypothesis}
+\usepackage{setspace}
+
+\makeatletter
+\@ifpackageloaded{hyperref}{}{%
+\ifxetex
+  \PassOptionsToPackage{hyphens}{url}\usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \PassOptionsToPackage{hyphens}{url}\usepackage[unicode=true]{hyperref}
+\fi
+}
+
+\@ifpackageloaded{color}{
+    \PassOptionsToPackage{usenames,dvipsnames}{color}
+}{%
+    \usepackage[usenames,dvipsnames]{color}
+}
+\makeatother
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={Your name (Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin) and Someone else's name (Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin) and Another person's name (Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin)},
+             pdfkeywords = {keywords here},  
+            pdftitle={Your project title here},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+% add tightlist ----------
+\providecommand{\tightlist}{%
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+	
+% \pagenumbering{arabic}% resets `page` counter to 1 
+%
+% \maketitle
+
+{% \usefont{T1}{pnc}{m}{n}
+\setlength{\parindent}{0pt}
+\thispagestyle{plain}
+{\fontsize{18}{20}\selectfont\raggedright 
+\maketitle  % title \par  
+
+}
+
+{
+   \vskip 13.5pt\relax \normalsize\fontsize{11}{12} 
+\textbf{\authorfont Your name} \hskip 15pt \emph{\small Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin}   \par \textbf{\authorfont Someone else's name} \hskip 15pt \emph{\small Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin}   \par \textbf{\authorfont Another person's name} \hskip 15pt \emph{\small Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin}   
+
+}
+
+}
+
+
+
+
+
+
+
+
+\begin{abstract}
+
+    \hbox{\vrule height .2pt width 39.14pc}
+
+    \vskip 8.5pt % \small 
+
+\noindent Your abstract here
+
+
+\vskip 8.5pt \noindent \emph{Keywords}: keywords here \par
+
+    \hbox{\vrule height .2pt width 39.14pc}
+
+
+
+\end{abstract}
+
+
+\vskip 6.5pt
+
+
+\noindent \doublespacing This report was generated on 2018-12-18 18:04:41. R version: 3.5.1 on
+x86\_64-pc-linux-gnu. For this report, CRAN packages as of 2018-09-01
+were used.
+
+\section{Introduction}\label{introduction}
+
+Here you should write a brief review of the literature with citations.
+You should cover enough to introduce the topic and make it clear why you
+are asking the questions that you are.
+
+\subsection{Research Questions}\label{research-questions}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Research Question 1
+\item
+  Research Question 2
+\end{enumerate}
+
+\subsection{Hypotheses}\label{hypotheses}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Hypothesis 1
+\item
+  Hypothesis 2.
+\end{enumerate}
+
+\section{Methods}\label{methods}
+
+Here you should outline the methods and give an overview of demographic
+information.
+
+\subsection{Patients and Controls}\label{patients-and-controls}
+
+\begin{quote}
+Patient and healthy control (HC) data were taken from an observational
+study, approved by the institutional review board (). HC matching
+patients for sex and age (+/-6 months) were identified using in-house
+python scripts using Python 3. Demograpic and clinical descriptive data
+are shown in Table 1.
+\end{quote}
+
+
+
+
+\newpage
+\singlespacing 
+\bibliography{library.bib}
+
+\end{document}

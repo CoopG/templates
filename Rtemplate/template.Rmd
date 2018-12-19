@@ -1,0 +1,112 @@
+---
+output:
+  pdf_document:
+    citation_package: natbib
+    keep_tex: true
+    fig_caption: true
+    latex_engine: pdflatex
+    template: ./templates/svm-latex-ms.tex
+  html_document:
+    highlighting: tango
+    keep_md: yes
+    self_contained: yes
+    theme: journal
+    toc: yes
+    toc_depth: 2
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
+    fig_caption: yes
+  rticles::springer_article:
+title: "Your project title here"
+thanks: "Thanks to Steven V Miller for his inspirational template (https://github.com/svmiller/svm-r-markdown-templates)"
+author:
+- name: Your name
+  affiliation: Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin
+- name: Someone else's name
+  affiliation: Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin
+- name: Another person's name
+  affiliation: Neurocure Clinical Research Center, Charité Universitätsmedizin Berlin
+abstract: "Your abstract here"
+keywords: "keywords here"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+spacing: double
+tables: true
+link-citations: yes
+bibliography: library.bib
+biblio-style: apsr
+---
+
+```{r knitr options, echo = FALSE}
+knitr::opts_chunk$set(
+  fig.path = "figs/",
+  screenshot.force = FALSE,
+  dpi = 1200,
+  dev = c("png", "jpeg", "cairo_ps")
+)
+# suppress scientific notation
+options(scipen = 999)
+```
+```{r info, echo = FALSE}
+project_name <- "template" # adapt!
+package_date <- "2018-12-01" # date of the CRAN snapshot that
+# the checkpoint package uses
+R_version <- "3.5.1" # R-Version to use
+options(Ncpus = 4) # use 4 cores for parallelized installation of packages
+if (R_version != paste0(version$major, ".", version$minor)){
+  stop("ERROR: specified R version does not match currently used.")
+}
+```
+```{r setup, echo=FALSE, include=FALSE}
+source("install.R")
+packages <- c(
+  "tidyverse",
+  "readr",
+  "here",
+  "tableone",
+  "knitr",
+  "kableExtra",
+)
+install(packages)
+```
+
+This report was generated on `r Sys.time()`. R version: `r paste0(version$major, ".", version$minor)` on `r version$platform`. For this report, CRAN packages as of `r package_date` were used.
+
+
+```{r data input, echo = FALSE, message = FALSE, warning = FALSE }
+data <- readr::read_csv(here::here("data", "faked_vims_data.csv"))
+```
+
+# Introduction
+
+Here you should write a brief review of the literature with citations. You should cover enough to introduce the topic and make it clear why you are asking the questions that you are.
+
+## Research Questions
+1. Research Question 1
+2. Research Question 2
+
+## Hypotheses
+1. Hypothesis 1
+2. Hypothesis 2.
+
+# Methods
+Here you should outline the methods and give an overview of demographic information.
+
+## Patients and Controls
+>Patient and healthy control (HC) data were taken from an observational study, approved by the institutional review board (). HC matching patients for sex and age (+/-6 months) were identified using in-house python scripts using Python 3. Demograpic and clinical descriptive data are shown in Table 1.
+
+```{r demographics, echo=FALSE}
+age_diff <- with(data, t.test(age ~ diagnosis))
+sex_diff <- chisq.test(table(data$sex, data$diagnosis))
+
+vars = c(
+  "age",
+  "sex"
+  )
+
+knitr::kable(print(tableone::CreateTableOne(vars = vars, data = data, factorVars = "sex", strata = "diagnosis"), nonnormal = TRUE))
+```
+
