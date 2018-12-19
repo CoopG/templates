@@ -1,5 +1,0 @@
-library(tidyverse)
-library(readr)
-library(here)
-library(tableone)
-library(knitr)

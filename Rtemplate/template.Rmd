@@ -61,16 +61,75 @@ if (R_version != paste0(version$major, ".", version$minor)){
 }
 ```
 ```{r setup, echo=FALSE, include=FALSE}
-source("install.R")
-packages <- c(
-  "tidyverse",
-  "readr",
-  "here",
-  "tableone",
-  "knitr",
-  "kableExtra",
-)
-install(packages)
+# The following codes checks if required packages are installed, if not, installs them, and then loads them.
+cranmirror <- "https://cran.cnr.berkeley.edu/"
+if (!require(tidyverse)) {
+  install.packages("tidyverse", repos = cranmirror); library(tidyverse)
+  }
+if (!require(dplyr)) {
+  install.packages("dplyr", repos = cranmirror); library(dplyr)
+  }
+if (!require(readr)) {
+  install.packages("readr", repos = cranmirror); library(readr)
+  }
+if (!require(stringr)) {
+  install.packages("stringr", repos = cranmirror); library(stringr)
+  }
+if (!require(lubridate)) {
+  install.packages("lubridate", repos = cranmirror); library(lubridate)
+  }
+if (!require(reshape2)) {
+  install.packages("reshape2", repos = cranmirror); library(reshape2)
+  }
+if (!require(ggcorrplot)) {
+  install.packages("ggcorrplot", repos = cranmirror); library(ggcorrplot)
+  }
+if (!require(visreg)) {
+  install.packages("visreg", repos = cranmirror); library(visreg)
+  }
+if (!require(multcomp)) {
+  install.packages("multcomp", repos = cranmirror); library(multcomp)
+  }
+if (!require(here)) {
+  install.packages("here", repos = cranmirror); library(here)
+  }
+if (!require(cvequality)) {
+  install.packages("cvequality", repos = cranmirror); library(cvequality)
+  }
+if (!require(raster)) {
+  install.packages("raster", repos = cranmirror); library(raster)
+  }
+if (!require(ggpubr)) {
+  install.packages("ggpubr", repos = cranmirror); library(ggpubr)
+  }
+if (!require(lm.beta)) {
+  install.packages("lm.beta", repos = cranmirror); library(lm.beta)
+  }
+if (!require(kableExtra)) {
+  install.packages("kableExtra", repos = cranmirror); library(kableExtra)
+  }
+if (!require(bookdown)) {
+  install.packages("bookdown", repos = cranmirror); library(bookdown)
+  }
+if (!require(BHH2)) {
+  install.packages("BHH2", repos = cranmirror); library(BHH2)
+  }
+if (!require(cocor)) {
+  install.packages("cocor", repos = cranmirror); library(cocor)
+  }
+if (!require(ggbeeswarm)) {
+  install.packages("ggbeeswarm", repos = cranmirror); library(ggbeeswarm)
+  }
+if (!require(ggsignif)) {
+  install.packages("ggsignif", repos = cranmirror); library(ggsignif)
+  }
+if (!require(stargazer)) {
+  install.packages("stargazer", repos = cranmirror); library(stargazer)
+  }
+```
+
+```{r sessionInfo, echo = FALSE}
+sessionInfo(package = NULL)
 ```
 
 This report was generated on `r Sys.time()`. R version: `r paste0(version$major, ".", version$minor)` on `r version$platform`. For this report, CRAN packages as of `r package_date` were used.
