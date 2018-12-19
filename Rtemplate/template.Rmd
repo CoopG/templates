@@ -75,44 +75,14 @@ if (!require(readr)) {
 if (!require(stringr)) {
   install.packages("stringr", repos = cranmirror); library(stringr)
   }
-if (!require(lubridate)) {
-  install.packages("lubridate", repos = cranmirror); library(lubridate)
-  }
-if (!require(reshape2)) {
-  install.packages("reshape2", repos = cranmirror); library(reshape2)
-  }
-if (!require(ggcorrplot)) {
-  install.packages("ggcorrplot", repos = cranmirror); library(ggcorrplot)
-  }
-if (!require(visreg)) {
-  install.packages("visreg", repos = cranmirror); library(visreg)
-  }
-if (!require(multcomp)) {
-  install.packages("multcomp", repos = cranmirror); library(multcomp)
-  }
 if (!require(here)) {
   install.packages("here", repos = cranmirror); library(here)
-  }
-if (!require(cvequality)) {
-  install.packages("cvequality", repos = cranmirror); library(cvequality)
-  }
-if (!require(raster)) {
-  install.packages("raster", repos = cranmirror); library(raster)
-  }
-if (!require(ggpubr)) {
-  install.packages("ggpubr", repos = cranmirror); library(ggpubr)
   }
 if (!require(lm.beta)) {
   install.packages("lm.beta", repos = cranmirror); library(lm.beta)
   }
 if (!require(kableExtra)) {
   install.packages("kableExtra", repos = cranmirror); library(kableExtra)
-  }
-if (!require(bookdown)) {
-  install.packages("bookdown", repos = cranmirror); library(bookdown)
-  }
-if (!require(BHH2)) {
-  install.packages("BHH2", repos = cranmirror); library(BHH2)
   }
 if (!require(cocor)) {
   install.packages("cocor", repos = cranmirror); library(cocor)
