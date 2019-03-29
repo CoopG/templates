@@ -53,9 +53,6 @@ project_name <- "template"
 package_date <- "2018-12-01" # date of the CRAN snapshot
 R_version <- "3.5.1" # R-Version used
 options(Ncpus = 4) # use 4 cores for parallelized installation of packages
-if (R_version != paste0(version$major, ".", version$minor)){
-  stop("ERROR: specified R version does not match currently used.")
-}
 # print sessonInfo() as markdown file
 writeLines(capture.output(sessionInfo(package=NULL)), "sessionInfo.md")
 ```
